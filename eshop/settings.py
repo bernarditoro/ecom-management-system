@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     # Local
     "shop.apps.ShopConfig",
+    "coupons.apps.CouponsConfig",
 ]
 
 MIDDLEWARE = [
