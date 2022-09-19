@@ -1,8 +1,17 @@
 from django.db import models
 
+from shipping.models import City
+
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, AbstractUser
+
 from django.conf import settings
 
-from shipping.models import City
+
+class Account(AbstractUser):
+    name = models.CharField(default="", max_length=200)
+
+    def __str__(self) -> str:
+        return super().get_full_name()
 
 
 class UserProfile(models.Model):
