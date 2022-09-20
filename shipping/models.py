@@ -31,3 +31,13 @@ class City(models.Model):
 
     def __str__(self):
         return f"{self.city}, {self.state}"
+
+
+class ShippingFee(models.Model):
+    city = models.OneToOneField(City, related_name="shipping", on_delete=models.CASCADE)
+    fee = models.DecimalField(max_digits=10, decimal_places=2)
+    shipping_duration = models.PositiveIntegerField(default=1,
+                                                    help_text="The duration(in weeks) before it gets to the user")
+
+    def __str__(self):
+        return f"Shipping details: {self.city}"

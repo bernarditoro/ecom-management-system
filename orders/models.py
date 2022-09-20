@@ -10,6 +10,8 @@ from django.urls import reverse
 
 from decimal import Decimal
 
+from shipping.models import ShippingFee
+
 
 # Create your models here.
 class Order(models.Model):
@@ -60,6 +62,15 @@ class Order(models.Model):
         try:
             if not self.amount_paid:
                 self.amount_paid = self.total_cost_with_shipping_with_discount()
+        except:
+            pass
+
+        try:
+            user_city = self.ordered_by.profile.city
+
+            shipping = ShippingFee.objects.get(city=user_city)
+
+            self.shipping_fee = shipping.fee
         except:
             pass
 
